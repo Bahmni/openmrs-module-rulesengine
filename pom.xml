@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>rulesengine</artifactId>
-	<version>0.92-SNAPSHOT</version>
+	<version>0.94-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Rules Engine Module</name>
 	<description>Helps to calculate dose based on dosing rules.</description>
@@ -29,6 +29,7 @@
 
 	<properties>
 		<openMRSVersion>2.0.3</openMRSVersion>
+		<bahmniVersion>0.94-SNAPSHOT</bahmniVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junitVersion>4.12</junitVersion>
 		<powerMockVersion>1.6.5</powerMockVersion>
@@ -64,6 +65,22 @@
 				<version>${openMRSVersion}</version>
 				<type>jar</type>
 				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.bahmni.module</groupId>
+				<artifactId>bahmni-migrator</artifactId>
+				<version>${bahmniVersion}</version>
+				<type>jar</type>
+
+			</dependency>
+
+			<dependency>
+				<groupId>org.bahmni.module</groupId>
+				<artifactId>bahmni-extension</artifactId>
+				<version>${bahmniVersion}</version>
+				<type>jar</type>
+
 			</dependency>
 
 			<dependency>

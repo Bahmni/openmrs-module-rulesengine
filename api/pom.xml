@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.bahmni.module</groupId>
             <artifactId>bahmni-migrator</artifactId>
-            <version>${bahmniVersion}</version>
+            <version>${bahmniJavaUtilsVersion}</version>
             <type>jar</type>
         </dependency>
 
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.bahmni.module</groupId>
             <artifactId>bahmni-extension</artifactId>
-            <version>${bahmniVersion}</version>
+            <version>${bahmniJavaUtilsVersion}</version>
             <type>jar</type>
         </dependency>
 

@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>org.bahmni.module</groupId>
 			<artifactId>bahmni-migrator</artifactId>
-			<version>${bahmniVersion}</version>
+			<version>${bahmniJavaUtilsVersion}</version>
 			<type>jar</type>
 		</dependency>
 

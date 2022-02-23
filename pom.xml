@@ -29,7 +29,7 @@
 
 	<properties>
 		<openMRSVersion>2.1.6</openMRSVersion>
-		<bahmniVersion>0.94-SNAPSHOT</bahmniVersion>
+		<bahmniJavaUtilsVersion>0.94.1</bahmniJavaUtilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junitVersion>4.12</junitVersion>
 		<powerMockVersion>1.6.5</powerMockVersion>
@@ -71,7 +71,7 @@
 			<dependency>
 				<groupId>org.bahmni.module</groupId>
 				<artifactId>bahmni-migrator</artifactId>
-				<version>${bahmniVersion}</version>
+				<version>${bahmniJavaUtilsVersion}</version>
 				<type>jar</type>
 
 			</dependency>
@@ -79,7 +79,7 @@
 			<dependency>
 				<groupId>org.bahmni.module</groupId>
 				<artifactId>bahmni-extension</artifactId>
-				<version>${bahmniVersion}</version>
+				<version>${bahmniJavaUtilsVersion}</version>
 				<type>jar</type>
 
 			</dependency>

@@ -8,11 +8,8 @@ on:
     - '**.md'
         
 env:
-  ORG_NAME: Bahmni
-  EVENT_TYPE: openmrs-module-rulesengine-trigger
   GITHUB_USER_REF: ${{ secrets.DOCKER_HUB_USERNAME }}
   GITHUB_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
-  REPOSITORY_NAME: openmrs-distro-bahmni
 
 jobs:
   build-and-publish:
@@ -30,20 +27,3 @@ jobs:
     - name: Build with Maven
       run: |
         ./mvnw clean package -DattachMuleSources -Pgithub deploy
-
-  trigger:
-    name: Trigger Workflows
-    needs: build-and-publish
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create repository_dispatch
-        run : |
-              trigger_result=$(curl -s -o trigger_response.txt -w "%{http_code}" -X POST -H "Accept: application/vnd.github.v3+json" -H 'authorization: Bearer ${{ secrets.BAHMNI_PAT }}' https://api.github.com/repos/${ORG_NAME}/${REPOSITORY_NAME}/dispatches -d '{"event_type":"'"${EVENT_TYPE}"'"}')
-              if [ $trigger_result == 204 ];then
-                echo "Trigger to $ORG_NAME/$REPOSITORY_NAME Success"
-              else
-                echo "Trigger to $ORG_NAME/$REPOSITORY_NAME Failed"
-                cat trigger_response.txt
-                exit 1
-              fi 
-        

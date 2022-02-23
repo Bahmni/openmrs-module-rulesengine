@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.openmrs.module</groupId>
         <artifactId>rulesengine</artifactId>
-        <version>0.92-SNAPSHOT</version>
+        <version>0.94-SNAPSHOT</version>
     </parent>
 
     <artifactId>rulesengine-api</artifactId>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.bahmni.module</groupId>
             <artifactId>bahmni-migrator</artifactId>
-            <version>0.92-SNAPSHOT</version>
+            <version>${bahmniJavaUtilsVersion}</version>
             <type>jar</type>
         </dependency>
 
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.bahmni.module</groupId>
             <artifactId>bahmni-extension</artifactId>
-            <version>0.92-SNAPSHOT</version>
+            <version>${bahmniJavaUtilsVersion}</version>
             <type>jar</type>
         </dependency>
 
@@ -64,6 +64,16 @@
             <artifactId>powermock-api-mockito</artifactId>
             <version>${powerMockVersion}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4jVersion}</version>
         </dependency>
         <!--
         Add other dependencies from parent's pom:
@@ -124,7 +134,7 @@
     <repositories>
         <repository>
             <id>central</id>
-            <url>http://repo1.maven.org/maven2</url>
+            <url>https://repo1.maven.org/maven2</url>
             <name>Repository for dependencies</name>
             <snapshots>
                 <enabled>true</enabled>
@@ -133,7 +143,7 @@
         <repository>
             <id>openmrs-repo</id>
             <name>OpenMRS Nexus Repository</name>
-            <url>http://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
+            <url>https://mavenrepo.openmrs.org/nexus/content/repositories/public</url>
         </repository>
     </repositories>
 

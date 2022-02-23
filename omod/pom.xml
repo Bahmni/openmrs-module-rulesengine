@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>rulesengine</artifactId>
-		<version>0.92-SNAPSHOT</version>
+		<version>0.94-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>rulesengine-omod</artifactId>
@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>org.bahmni.module</groupId>
 			<artifactId>bahmni-migrator</artifactId>
-			<version>0.92-SNAPSHOT</version>
+			<version>${bahmniJavaUtilsVersion}</version>
 			<type>jar</type>
 		</dependency>
 
@@ -30,14 +30,14 @@
 			<type>jar</type>
 		</dependency>
 
-		<!-- 
-		Add other dependencies from parent's pom: 
-		<dependency> 
-			<groupId>org.other.library</groupId> 
-			<artifactId>library-name</artifactId> 
-		</dependency> 
+		<!--
+		Add other dependencies from parent's pom:
+		<dependency>
+			<groupId>org.other.library</groupId>
+			<artifactId>library-name</artifactId>
+		</dependency>
 		-->
-		
+
 		<!-- Begin OpenMRS modules -->
 
 		<dependency>
@@ -45,8 +45,8 @@
 			<artifactId>${project.parent.artifactId}-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
-				
+
+
 		<!-- End OpenMRS modules -->
 
 		<dependency>
@@ -81,7 +81,7 @@
 			<artifactId>openmrs-web</artifactId>
 			<type>jar</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
@@ -92,6 +92,18 @@
 			<groupId>org.openmrs.web</groupId>
 			<artifactId>openmrs-web</artifactId>
 			<type>test-jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4jVersion}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4jVersion}</version>
 		</dependency>
 
 		<dependency>
@@ -157,7 +169,7 @@
 						<includeEmptyDirs>true</includeEmptyDirs>
 					</configuration>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>

@@ -2,15 +2,9 @@ name: Build and publish artifacts
 
 on:
   push:
-    branches:
-    - BAH-1384
-    paths-ignore:
-    - '**.md'
+    branches: master
+    paths-ignore: '**.md'
         
-env:
-  GITHUB_USER_REF: ${{ secrets.DOCKER_HUB_USERNAME }}
-  GITHUB_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   build-and-publish:
     name: Build and Publish
@@ -25,5 +19,7 @@ jobs:
         server-username: GITHUB_USER_REF  
         server-password: GITHUB_TOKEN_REF
     - name: Build with Maven
-      run: |
-        ./mvnw clean package -DattachMuleSources -Pgithub deploy
+      run: ./mvnw clean package -DattachMuleSources -Pgithub deploy
+      env:
+        GITHUB_USER_REF: ${{ secrets.DOCKER_HUB_USERNAME }}
+        GITHUB_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}

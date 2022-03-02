@@ -53,7 +53,7 @@
                   locale_preferred="0"/>
 
     <obs obs_id="105" concept_id="5090" person_id="1032" encounter_id="10008" value_numeric="170" obs_datetime="2008-08-19 05:05:05.2"
-         date_created="2008-08-19 15:09:05.0" uuid="obs_105_uuid" creator="1" voided="0" />
+         date_created="2008-08-19 15:09:05.0" uuid="obs_105_uuid" creator="1" voided="0" status="FINAL" />
 
     <person person_id="1050" gender="F" dead="false" creator="1" birthdate_estimated="0" birthdate="1960-04-30" date_created="2008-08-16 15:57:09.0"
             voided="false" uuid="person_1050_uuid"/>
@@ -77,10 +77,10 @@
                creator="1" date_created="2008-08-19 02:02:02.2" voided="false" uuid="encounter_1055_uuid"/>
 
     <obs obs_id="106" concept_id="5090" person_id="1055" encounter_id="1055" value_numeric="170" obs_datetime="2008-08-19 05:05:05.2"
-         date_created="2008-08-19 15:09:05.0" uuid="obs_106_uuid" creator="1" voided="0" />
+         date_created="2008-08-19 15:09:05.0" uuid="obs_106_uuid" creator="1" voided="0" status="FINAL" />
 
     <obs obs_id="107" concept_id="5089" person_id="1055" encounter_id="1055" value_numeric="80" obs_datetime="2008-08-19 05:05:05.2"
-         date_created="2008-08-19 15:09:05.0" uuid="obs_107_uuid" creator="1" voided="0" />
+         date_created="2008-08-19 15:09:05.0" uuid="obs_107_uuid" creator="1" voided="0" status="FINAL" />
 
     <person person_id="1034" gender="M" dead="false" creator="1" birthdate_estimated="0" birthdate="1970-04-21" date_created="2008-08-16 15:57:09.0"
             voided="false" void_reason="For test purposes" uuid="person_1034_uuid"/>
@@ -110,8 +110,8 @@
     <encounter encounter_id="2002" encounter_type="1" patient_id="2000" visit_id="2002" location_id="1" encounter_datetime="2008-08-26 05:00:00.2"
                creator="1" date_created="2008-08-26 02:02:02.2" voided="false" uuid="encounter_2002_uuid"/>
     <obs obs_id="2000" concept_id="5090" person_id="2000" encounter_id="2000" value_numeric="170" obs_datetime="2008-08-19 05:05:05.2"
-         date_created="2008-08-19 15:09:05.0" uuid="obs_2000_uuid" creator="1" voided="0" />
+         date_created="2008-08-19 15:09:05.0" uuid="obs_2000_uuid" creator="1" voided="0" status="FINAL" />
     <obs obs_id="2002" concept_id="5090" person_id="2000" encounter_id="2002" value_numeric="175" obs_datetime="2008-08-26 05:05:05.2"
-         date_created="2008-08-26 15:09:05.0" uuid="obs_2002_uuid" creator="1" voided="0" />
+         date_created="2008-08-26 15:09:05.0" uuid="obs_2002_uuid" creator="1" voided="0" status="FINAL" />
 
 </dataset>

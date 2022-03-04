@@ -11,5 +11,5 @@ Clone the repository and build the omod
    
     https://github.com/Bahmni/openmrs-module-rulesengine.git
     cd openmrs-module-rulesengine
-    mvn clean install
+    ./mvnw clean install
     

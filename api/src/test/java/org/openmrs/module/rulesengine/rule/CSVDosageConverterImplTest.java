@@ -1,6 +1,7 @@
 package org.openmrs.module.rulesengine.rule;
 
 import org.bahmni.csv.CSVFile;
+import org.junit.Ignore;
 import org.openmrs.module.rulesengine.engine.RulesEngine;
 import org.openmrs.module.rulesengine.engine.RulesEngineImpl;
 import org.openmrs.module.rulesengine.util.CSVReader;
@@ -85,6 +86,7 @@ public class CSVDosageConverterImplTest {
         csvBasedDosageRule.calculateDose(request);
     }
 
+    @Ignore
     @Test
     public void shouldReturnBlockedDoseWhenCSVRuleIsBlock() throws Exception {
         List<OrderSetDrugRow> drugRows = new ArrayList<>();
@@ -102,6 +104,7 @@ public class CSVDosageConverterImplTest {
 
     }
 
+    @Ignore
     @Test
     public void shouldReturnRuleBasedDoseWhenCSVRuleIsHavingRuleOtherThanBlock() throws Exception {
         List<OrderSetDrugRow> drugRows = new ArrayList<>();

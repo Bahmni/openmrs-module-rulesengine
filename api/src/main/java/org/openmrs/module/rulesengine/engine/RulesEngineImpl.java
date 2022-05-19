@@ -12,7 +12,6 @@ import org.openmrs.module.rulesengine.rule.DosageRule;
 import org.openmrs.module.rulesengine.util.RulesEngineProperties;
 import org.openmrs.util.OpenmrsUtil;
 import org.reflections.Reflections;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -21,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-@Component
+
 public class RulesEngineImpl implements RulesEngine {
 
     private static final String rulesEngineExtensionPath = "rulesengine" + File.separator + "rulesengineextension";

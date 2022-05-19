@@ -25,6 +25,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
@@ -58,7 +59,7 @@ public class CSVDosageConverterImplTest {
 
         when(patient.getAge()).thenReturn(20);
         when(PatientService.getPatientByUuid(anyString())).thenReturn(patient);
-        when(ObservationService.getLatestObsValueNumeric(any(Patient.class), any(ObservationService.ConceptRepo.class), anyString()))
+        when(ObservationService.getLatestObsValueNumeric(any(Patient.class), any(ObservationService.ConceptRepo.class), eq(null)))
                 .thenReturn(50.0);
 
     }
@@ -86,7 +87,6 @@ public class CSVDosageConverterImplTest {
         csvBasedDosageRule.calculateDose(request);
     }
 
-    @Ignore
     @Test
     public void shouldReturnBlockedDoseWhenCSVRuleIsBlock() throws Exception {
         List<OrderSetDrugRow> drugRows = new ArrayList<>();
@@ -104,7 +104,6 @@ public class CSVDosageConverterImplTest {
 
     }
 
-    @Ignore
     @Test
     public void shouldReturnRuleBasedDoseWhenCSVRuleIsHavingRuleOtherThanBlock() throws Exception {
         List<OrderSetDrugRow> drugRows = new ArrayList<>();

@@ -1,6 +1,7 @@
 package org.openmrs.module.rulesengine.rule;
 
 import org.bahmni.csv.CSVFile;
+import org.junit.Ignore;
 import org.openmrs.module.rulesengine.engine.RulesEngine;
 import org.openmrs.module.rulesengine.engine.RulesEngineImpl;
 import org.openmrs.module.rulesengine.util.CSVReader;
@@ -24,6 +25,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
@@ -57,7 +59,7 @@ public class CSVDosageConverterImplTest {
 
         when(patient.getAge()).thenReturn(20);
         when(PatientService.getPatientByUuid(anyString())).thenReturn(patient);
-        when(ObservationService.getLatestObsValueNumeric(any(Patient.class), any(ObservationService.ConceptRepo.class), anyString()))
+        when(ObservationService.getLatestObsValueNumeric(any(Patient.class), any(ObservationService.ConceptRepo.class), eq(null)))
                 .thenReturn(50.0);
 
     }

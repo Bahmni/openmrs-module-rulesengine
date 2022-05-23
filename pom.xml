@@ -28,11 +28,11 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>2.3.0</openMRSVersion>
+		<openMRSVersion>2.4.2</openMRSVersion>
 		<bahmniJavaUtilsVersion>0.94.2</bahmniJavaUtilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<junitVersion>4.12</junitVersion>
-		<powerMockVersion>1.6.5</powerMockVersion>
+		<junitVersion>4.13</junitVersion>
+		<powerMockVersion>2.0.7</powerMockVersion>
 		<log4jVersion>2.17.1</log4jVersion>
 	</properties>
 

@@ -1,6 +1,7 @@
 package org.openmrs.module.rulesengine.rule;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,6 +14,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.powermock.api.mockito.PowerMockito.*;
@@ -35,7 +37,7 @@ public class WeightBasedDoseRuleTest  {
         Patient patient= mock(Patient.class);
         when(patient.getAge()).thenReturn(20);
         when(PatientService.getPatientByUuid(anyString())).thenReturn(patient);
-        when(ObservationService.getLatestObsValueNumeric(any(Patient.class),any(ObservationService.ConceptRepo.class), anyString()))
+        when(ObservationService.getLatestObsValueNumeric(any(Patient.class),any(ObservationService.ConceptRepo.class), eq(null)))
                 .thenReturn(50.0);
 
         DosageRequest dosageRequest = new DosageRequest("paracetamol","person_1055_uuid", 10.0, "mg/kg","testorderset","mg/kg", null);

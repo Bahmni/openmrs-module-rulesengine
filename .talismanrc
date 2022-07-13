@@ -1,4 +1,0 @@
-fileignoreconfig:
-- filename: .github/workflows/build_publish.yml
-  checksum: 38c1983b4217abec225f88cc7147ca600fc76819fab72a39369bae42a7e0dc18
-version: "1.0"

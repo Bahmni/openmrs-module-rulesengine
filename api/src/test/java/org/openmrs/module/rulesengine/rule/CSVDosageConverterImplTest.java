@@ -1,7 +1,6 @@
 package org.openmrs.module.rulesengine.rule;
 
 import org.bahmni.csv.CSVFile;
-import org.junit.Ignore;
 import org.openmrs.module.rulesengine.engine.RulesEngine;
 import org.openmrs.module.rulesengine.engine.RulesEngineImpl;
 import org.openmrs.module.rulesengine.util.CSVReader;

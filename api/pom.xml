@@ -61,7 +61,7 @@
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito</artifactId>
+            <artifactId>powermock-api-mockito2</artifactId>
             <version>${powerMockVersion}</version>
             <scope>test</scope>
         </dependency>
@@ -126,6 +126,13 @@
                     <artifactId>powermock-api-mockito</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javaxServletVersion}</version>
+            <scope>test</scope>
         </dependency>
         <!-- End OpenMRS core -->
 

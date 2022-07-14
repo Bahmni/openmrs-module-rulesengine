@@ -2,9 +2,7 @@ package org.openmrs.module.rulesengine.domain;
 
 import org.bahmni.csv.CSVEntity;
 import org.bahmni.csv.annotation.CSVHeader;
-import org.springframework.stereotype.Component;
 
-@Component
 public class OrderSetDrugRow extends CSVEntity {
 
     @CSVHeader(name = "Name")

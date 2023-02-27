@@ -2,9 +2,9 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.openmrs.module</groupId>
+	<groupId>org.bahmni.module</groupId>
 	<artifactId>rulesengine</artifactId>
-	<version>0.94.0</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>Rules Engine Module</name>
 	<description>Helps to calculate dose based on dosing rules.</description>

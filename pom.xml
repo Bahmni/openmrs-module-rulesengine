@@ -21,6 +21,14 @@
 			<url>https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt</url>
 		</license>
 	</licenses>
+	<developers>
+		<developer>
+			<name>Bahmni</name>
+			<email>bahmnicommunity@gmail.com</email>
+			<organization>Bahmni</organization>
+			<organizationUrl>https://github.com/Bahmni</organizationUrl>
+		</developer>
+	</developers>
 
     <scm>
         <connection>scm:git:git@github.com:bahmni/openmrs-module-rulesengine.git</connection>

@@ -15,6 +15,13 @@
 		<url>http://openmrs.org</url>
 	</organization>
 
+	<licenses>
+		<license>
+			<name>Mozilla Public License, version 2.0</name>
+			<url>https://www.mozilla.org/media/MPL/2.0/index.815ca599c9df.txt</url>
+		</license>
+	</licenses>
+
     <scm>
         <connection>scm:git:git@github.com:bahmni/openmrs-module-rulesengine.git</connection>
         <developerConnection>scm:git:git@github.com:bahmni/openmrs-module-rulesengine.git</developerConnection>

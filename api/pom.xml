@@ -13,6 +13,13 @@
     <name>Rules Engine Module API</name>
     <description>API project for RulesEngine</description>
 
+    <licenses>
+        <license>
+            <name>Mozilla Public License Version 2.0</name>
+            <url>https://www.bahmni.org/license/mplv2hd</url>
+        </license>
+    </licenses>
+
     <dependencies>
 
         <dependency>
@@ -142,14 +149,7 @@
         <repository>
             <id>central</id>
             <url>https://repo1.maven.org/maven2</url>
-            
-    <licenses>
-        <license>
-            <name>Mozilla Public License Version 2.0</name>
-            <url>https://www.bahmni.org/license/mplv2hd</url>
-        </license>
-    </licenses>
-    <name>Repository for dependencies</name>
+            <name>Repository for dependencies</name>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>

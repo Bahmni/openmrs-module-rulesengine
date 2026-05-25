@@ -20,7 +20,9 @@ public class Dose {
     }
 
     public enum DoseUnit {
-        mg
+        mg,
+        mcg,
+        ml
     }
 
     public String getDrugName() {

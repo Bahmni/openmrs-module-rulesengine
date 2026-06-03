@@ -95,7 +95,7 @@ public class RulesEngineImpl implements RulesEngine {
     }
 
     private File[] getExtendedRuleFiles() {
-        File folder = new File(getRulesEngineExtensionPath());
+        File folder = new File(OpenmrsUtil.getApplicationDataDirectory(), getRulesEngineExtensionPath());
         File[] listOfFiles = folder.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String filename) {
                 return filename.endsWith(".groovy");
@@ -105,8 +105,7 @@ public class RulesEngineImpl implements RulesEngine {
     }
 
     private String getRulesEngineExtensionPath() {
-        String ruleFilePath = OpenmrsUtil.getApplicationDataDirectory() +
-                "bahmni_config" + File.separator + "openmrs" + File.separator +
+        String ruleFilePath = "bahmni_config" + File.separator + "openmrs" + File.separator +
                 rulesEngineExtensionPath;
         return ruleFilePath;
     }

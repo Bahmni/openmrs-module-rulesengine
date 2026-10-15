@@ -43,7 +43,7 @@
 	</modules>
 
 	<properties>
-		<openMRSVersion>2.4.2</openMRSVersion>
+		<openMRSVersion>2.8.9</openMRSVersion>
 		<bahmniJavaUtilsVersion>1.0.0</bahmniJavaUtilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junitVersion>4.13</junitVersion>

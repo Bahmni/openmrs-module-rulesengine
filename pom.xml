@@ -47,7 +47,7 @@
 		<bahmniJavaUtilsVersion>1.0.0</bahmniJavaUtilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junitVersion>4.13</junitVersion>
-		<powerMockVersion>2.0.7</powerMockVersion>
+		<mockitoVersion>5.7.0</mockitoVersion>
 		<log4jVersion>2.17.1</log4jVersion>
 		<javaxServletVersion>4.0.1</javaxServletVersion>
 	</properties>
@@ -155,8 +155,8 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<target>1.8</target>
-						<source>1.8</source>
+						<target>17</target>
+						<source>17</source>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -168,6 +168,11 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.2.5</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

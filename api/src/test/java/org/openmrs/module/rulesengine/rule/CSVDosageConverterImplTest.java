@@ -14,34 +14,34 @@ import org.openmrs.module.rulesengine.engine.RulesEngine;
 import org.openmrs.module.rulesengine.engine.RulesEngineImpl;
 import org.openmrs.module.rulesengine.util.CSVReader;
 import org.bahmni.csv.exception.MigrationException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.openmrs.Patient;
 import org.openmrs.module.rulesengine.domain.DosageRequest;
 import org.openmrs.module.rulesengine.domain.Dose;
 import org.openmrs.module.rulesengine.domain.OrderSetDrugRow;
 import org.openmrs.module.rulesengine.service.ObservationService;
 import org.openmrs.module.rulesengine.service.PatientService;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({PatientService.class, ObservationService.class})
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class CSVDosageConverterImplTest {
 
     CSVBasedDosageRule csvBasedDosageRule;
@@ -58,25 +58,34 @@ public class CSVDosageConverterImplTest {
 
     private String CSVBaseFolderPath = "/test";
 
+    private MockedStatic<PatientService> patientServiceMockedStatic;
+    private MockedStatic<ObservationService> observationServiceMockedStatic;
+
     @Before
     public void setUp() throws Exception {
         csvReader = mock(CSVReader.class);
         csvBasedDosageRule = new CSVBasedDosageRule(csvReader,new RulesEngineImpl());
-        mockStatic(PatientService.class);
-        mockStatic(ObservationService.class);
+        patientServiceMockedStatic = mockStatic(PatientService.class);
+        observationServiceMockedStatic = mockStatic(ObservationService.class);
 
         when(patient.getAge()).thenReturn(20);
-        when(PatientService.getPatientByUuid(anyString())).thenReturn(patient);
-        when(ObservationService.getLatestObsValueNumeric(any(Patient.class), any(ObservationService.ConceptRepo.class), eq(null)))
+        patientServiceMockedStatic.when(() -> PatientService.getPatientByUuid(anyString())).thenReturn(patient);
+        observationServiceMockedStatic.when(() -> ObservationService.getLatestObsValueNumeric(any(Patient.class), any(ObservationService.ConceptRepo.class), eq(null)))
                 .thenReturn(50.0);
 
+    }
+
+    @After
+    public void tearDown() {
+        patientServiceMockedStatic.close();
+        observationServiceMockedStatic.close();
     }
 
     @Test(expected = MigrationException.class)
     public void shouldThrowExceptionWhenCSVFileIsNotAvailable() throws Exception {
         List<OrderSetDrugRow> drugRows = new ArrayList<>();
         when(csvReader
-                .readCsvFileToMemory(any(CSVFile.class), Matchers.<Class<OrderSetDrugRow>>any()))
+                .readCsvFileToMemory(any(CSVFile.class), ArgumentMatchers.<Class<OrderSetDrugRow>>any()))
                 .thenThrow(new MigrationException("csv file not found"));
         DosageRequest request = new DosageRequest("test", "patientId", 10, "mg", "testorderset", "test", null);
         csvBasedDosageRule.calculateDose(request);
@@ -89,7 +98,7 @@ public class CSVDosageConverterImplTest {
         drugRows.add(new OrderSetDrugRow("drug2", 13, 200, 30.0, 35.9, 300,"block"));
 
         when(csvReader
-                .readCsvFileToMemory(any(CSVFile.class), Matchers.<Class<OrderSetDrugRow>>any()))
+                .readCsvFileToMemory(any(CSVFile.class), ArgumentMatchers.<Class<OrderSetDrugRow>>any()))
                 .thenReturn(drugRows);
         DosageRequest request = new DosageRequest("drug10", "patientId", 10, "mg", "testorderset", "custom", null);
         csvBasedDosageRule.calculateDose(request);
@@ -102,7 +111,7 @@ public class CSVDosageConverterImplTest {
         drugRows.add(new OrderSetDrugRow("drug2", 13, 200, 30.0, 35.9, 300,"block"));
 
         when(csvReader
-                .readCsvFileToMemory(any(CSVFile.class), Matchers.<Class<OrderSetDrugRow>>any()))
+                .readCsvFileToMemory(any(CSVFile.class), ArgumentMatchers.<Class<OrderSetDrugRow>>any()))
                 .thenReturn(drugRows);
         DosageRequest request = new DosageRequest("drug1", "patientId", 10, "mg", "testorderset", "custom", null);
         Dose newDose = csvBasedDosageRule.calculateDose(request);
@@ -120,7 +129,7 @@ public class CSVDosageConverterImplTest {
         when(dosageRule.calculateDose(any(DosageRequest.class))).thenReturn(new Dose("drug1",500, Dose.DoseUnit.mg));
         when(rulesEngine.getRuleObject("mg/kg")).thenReturn(dosageRule);
         when(csvReader
-                .readCsvFileToMemory(any(CSVFile.class), Matchers.<Class<OrderSetDrugRow>>any()))
+                .readCsvFileToMemory(any(CSVFile.class), ArgumentMatchers.<Class<OrderSetDrugRow>>any()))
                 .thenReturn(drugRows);
         DosageRequest request = new DosageRequest("drug1", "patientId", 10, "mg", "testorderset", "custom", null);
         Dose newDose = csvBasedDosageRule.calculateDose(request);
@@ -137,7 +146,7 @@ public class CSVDosageConverterImplTest {
         when(dosageRule.calculateDose(any(DosageRequest.class))).thenReturn(new Dose("drug1", 500, Dose.DoseUnit.mg));
         when(rulesEngine.getRuleObject("notdefined")).thenReturn(null);
         when(csvReader
-                .readCsvFileToMemory(any(CSVFile.class), Matchers.<Class<OrderSetDrugRow>>any()))
+                .readCsvFileToMemory(any(CSVFile.class), ArgumentMatchers.<Class<OrderSetDrugRow>>any()))
                 .thenReturn(drugRows);
         DosageRequest request = new DosageRequest("drug1", "patientId", 10, "mg", "testorderset", "custom", null);
         csvBasedDosageRule.calculateDose(request);

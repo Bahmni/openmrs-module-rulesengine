@@ -9,29 +9,28 @@
 
 package org.openmrs.module.rulesengine.engine;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.openmrs.module.rulesengine.domain.DosageRequest;
 import org.openmrs.module.rulesengine.domain.Dose;
 import org.openmrs.module.rulesengine.rule.BSABasedDosageRule;
 import org.openmrs.module.rulesengine.rule.DosageRule;
 import org.openmrs.module.rulesengine.util.RulesEngineProperties;
 import org.openmrs.util.OpenmrsUtil;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.mockito.Mockito.mockStatic;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({RulesEngineProperties.class, OpenmrsUtil.class})
+@RunWith(MockitoJUnitRunner.class)
 public class RulesEngineImplTest {
 
     @Mock
@@ -39,18 +38,27 @@ public class RulesEngineImplTest {
 
     RulesEngineImpl rulesEngine;
 
+    private MockedStatic<RulesEngineProperties> rulesEnginePropertiesMockedStatic;
+    private MockedStatic<OpenmrsUtil> openmrsUtilMockedStatic;
+
     @Before
     public void setUp() throws Exception {
-        mockStatic(RulesEngineProperties.class);
-        mockStatic(OpenmrsUtil.class);
+        rulesEnginePropertiesMockedStatic = mockStatic(RulesEngineProperties.class);
+        openmrsUtilMockedStatic = mockStatic(OpenmrsUtil.class);
         File resourcesDirectory = new File("src/test/resources/");
-        when(OpenmrsUtil.getApplicationDataDirectory()).thenReturn(resourcesDirectory.getAbsolutePath()+"/");
+        openmrsUtilMockedStatic.when(OpenmrsUtil::getApplicationDataDirectory).thenReturn(resourcesDirectory.getAbsolutePath()+"/");
         rulesEngine=new RulesEngineImpl();
+    }
+
+    @After
+    public void tearDown() {
+        rulesEnginePropertiesMockedStatic.close();
+        openmrsUtilMockedStatic.close();
     }
 
     @Test
     public void getRuleNamesReturnsRulesFromProperties() {
-        when(RulesEngineProperties.getProperty("rules")).thenReturn("mg/kg|mg/m2");
+        rulesEnginePropertiesMockedStatic.when(() -> RulesEngineProperties.getProperty("rules")).thenReturn("mg/kg|mg/m2");
 
         String[] ruleNames = rulesEngine.getRuleNames();
 

@@ -9,34 +9,44 @@
 
 package org.openmrs.module.rulesengine.rule;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.mockito.MockedStatic;
 import org.openmrs.Patient;
 import org.openmrs.module.rulesengine.domain.DosageRequest;
 import org.openmrs.module.rulesengine.domain.Dose;
 import org.openmrs.module.rulesengine.service.ObservationService;
 import org.openmrs.module.rulesengine.service.PatientService;
 import org.openmrs.module.rulesengine.util.BahmniMath;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.powermock.api.mockito.PowerMockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({PatientService.class, ObservationService.class, BahmniMath.class})
 public class BSABasedDoseRuleTest  {
+
+    private MockedStatic<PatientService> patientServiceMockedStatic;
+    private MockedStatic<ObservationService> observationServiceMockedStatic;
+    private MockedStatic<BahmniMath> bahmniMathMockedStatic;
 
     @Before
     public void setUp() throws Exception {
-        mockStatic(PatientService.class);
-        mockStatic(ObservationService.class);
-        mockStatic(BahmniMath.class);
+        patientServiceMockedStatic = mockStatic(PatientService.class);
+        observationServiceMockedStatic = mockStatic(ObservationService.class);
+        bahmniMathMockedStatic = mockStatic(BahmniMath.class);
+    }
+
+    @After
+    public void tearDown() {
+        patientServiceMockedStatic.close();
+        observationServiceMockedStatic.close();
+        bahmniMathMockedStatic.close();
     }
 
     @Test
@@ -44,16 +54,13 @@ public class BSABasedDoseRuleTest  {
         Patient patient = mock(Patient.class);
         when(patient.getBirthdate()).thenReturn(new Date());
 
-        PatientService patientService= mock(PatientService.class);
-        when(patientService.getPatientByUuid(any(String.class))).thenReturn(patient);
+        patientServiceMockedStatic.when(() -> PatientService.getPatientByUuid(any(String.class))).thenReturn(patient);
 
-        ObservationService observationService = mock(ObservationService.class);
-        when(observationService.getLatestObsValueNumeric(patient, ObservationService.ConceptRepo.HEIGHT, "visit_uuid")).thenReturn(189.0);
-        when(observationService.getLatestObsValueNumeric(patient, ObservationService.ConceptRepo.WEIGHT, "visit_uuid")).thenReturn(69.0);
+        observationServiceMockedStatic.when(() -> ObservationService.getLatestObsValueNumeric(patient, ObservationService.ConceptRepo.HEIGHT, "visit_uuid")).thenReturn(189.0);
+        observationServiceMockedStatic.when(() -> ObservationService.getLatestObsValueNumeric(patient, ObservationService.ConceptRepo.WEIGHT, "visit_uuid")).thenReturn(69.0);
 
-        BahmniMath bahmniMath = mock(BahmniMath.class);
-        when(bahmniMath.ageInYears(any(Date.class),any(Date.class))).thenReturn(40);
-        when(bahmniMath.getTwoDigitRoundUpValue(any(Double.class))).thenReturn(150.0);
+        bahmniMathMockedStatic.when(() -> BahmniMath.ageInYears(any(Date.class), any(Date.class))).thenReturn(40);
+        bahmniMathMockedStatic.when(() -> BahmniMath.getTwoDigitRoundUpValue(any(Double.class))).thenReturn(150.0);
 
         DosageRequest dosageRequest = new DosageRequest(
                 "paracetamol",
